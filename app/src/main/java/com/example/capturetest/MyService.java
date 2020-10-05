@@ -107,14 +107,13 @@ public class MyService extends Service {
 
     private View.OnTouchListener mViewTouchListener = new View.OnTouchListener() {
         @Override public boolean onTouch(View v, MotionEvent event) {
-
             switch(event.getAction()) {
                 case MotionEvent.ACTION_DOWN:                //사용자 터치 다운이면
                     START_X = event.getRawX();                    //터치 시작 점
                     START_Y = event.getRawY();                    //터치 시작 점
                     PREV_X = params.x;                            //뷰의 시작 점
                     PREV_Y = params.y;                            //뷰의 시작 점
-                    break;
+                    return false;
                 case MotionEvent.ACTION_MOVE:
 
                     int x = (int)(event.getRawX() - START_X);    //이동한 거리
@@ -127,8 +126,7 @@ public class MyService extends Service {
                     wm.updateViewLayout(mView, params);    //뷰 업데이트
                     break;
             }
-
-            return true;
+            return false;
         }
     };
 
